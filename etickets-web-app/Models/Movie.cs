@@ -14,7 +14,12 @@ namespace etickets_web_app.Models
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
         public MovieCategorie MovieCategorie { get; set; }
-        
+        public int ProducerId { get; set; }
+        public Producer Producer { get; set; }
+        public ICollection<Actor> Actors { get; set; }
+        public ICollection<Actor_Movie> Actors_Movies { get; set;}
+        public int CinemaId { get; set; }
+        public Cinema Cinema { get; set; }
         
     }
 }

@@ -15,7 +15,7 @@ namespace etickets_web_app.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allActors = await _service.GetAll();
+            var allActors = await _service.GetAllAsync();
             return View(allActors);
         }
         public IActionResult Create()
@@ -30,8 +30,15 @@ namespace etickets_web_app.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details (int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("Empty");
+            return View(actorDetails);
         }
     }
 }

@@ -3,9 +3,7 @@ using etickets_web_app.Models;
 
 namespace etickets_web_app.Data.Services
 {
-    public interface IActorsService : IEntityBaseRepository<Actor>
+    public interface IProducersService : IEntityBaseRepository<Producer>
     {
     }
 }
-
-   

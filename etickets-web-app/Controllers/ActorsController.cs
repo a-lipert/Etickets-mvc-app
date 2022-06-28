@@ -57,7 +57,7 @@ namespace etickets_web_app.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, ActorViewModel actor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id, FullName, ProfilePictureURL, Bio")] ActorViewModel actor)
         {
             if (!ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace etickets_web_app.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //get: Actors/delete/1
+        //Get: Actors/delete/1
         public async Task<IActionResult> Delete(int id)
         {
 

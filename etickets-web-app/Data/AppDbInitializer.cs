@@ -6,14 +6,13 @@ namespace etickets_web_app.Data
     {
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
-            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-                context.Database.EnsureCreated();
+            using var serviceScope = applicationBuilder.ApplicationServices.CreateScope();
+            var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+            context.Database.EnsureCreated();
 
-                if (!context.Cinemas.Any())
-                {
-                    context.Cinemas.AddRange(new List<Cinema>()
+            if (!context.Cinemas.Any())
+            {
+                context.Cinemas.AddRange(new List<Cinema>()
                     {
                          new Cinema()
                         {
@@ -46,13 +45,13 @@ namespace etickets_web_app.Data
                             Description = "This is the description of the first cinema"
                         },
                     });
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
+            }
 
 
-                if (!context.Actors.Any())
-                {
-                    context.Actors.AddRange(new List<Actor>()
+            if (!context.Actors.Any())
+            {
+                context.Actors.AddRange(new List<Actor>()
                     {
                         new Actor()
                         {
@@ -86,12 +85,12 @@ namespace etickets_web_app.Data
                             ProfilePictureURL = "http://dotnethow.net/images/actors/actor-5.jpeg"
                         }
                     });
-                    context.SaveChanges();
+                context.SaveChanges();
 
-                }
-                if (!context.Producers.Any())
-                {
-                    context.Producers.AddRange(new List<Producer>()
+            }
+            if (!context.Producers.Any())
+            {
+                context.Producers.AddRange(new List<Producer>()
                     {
                         new Producer()
                         {
@@ -125,11 +124,11 @@ namespace etickets_web_app.Data
                             ProfilePictureURL = "http://dotnethow.net/images/producers/producer-5.jpeg"
                         }
                     });
-                    context.SaveChanges();
-                }
-                if (!context.Movies.Any())
-                {
-                    context.Movies.AddRange(new List<Movie>()
+                context.SaveChanges();
+            }
+            if (!context.Movies.Any())
+            {
+                context.Movies.AddRange(new List<Movie>()
                     {
                         new Movie()
                         {
@@ -204,11 +203,11 @@ namespace etickets_web_app.Data
                             MovieCategorie = MovieCategorie.Drama
                         }
                     });
-                    context.SaveChanges();
-                }
-                if (!context.Actor_Movies.Any())
-                {
-                    context.Actor_Movies.AddRange(new List<Actor_Movie>()
+                context.SaveChanges();
+            }
+            if (!context.Actor_Movies.Any())
+            {
+                context.Actor_Movies.AddRange(new List<Actor_Movie>()
                     {
                         new Actor_Movie()
                         {
@@ -304,8 +303,7 @@ namespace etickets_web_app.Data
                             MovieId = 6
                         },
                     });
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
         }
     }

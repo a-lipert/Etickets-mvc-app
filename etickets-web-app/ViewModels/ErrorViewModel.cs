@@ -1,4 +1,4 @@
-namespace etickets_web_app.Models
+namespace etickets_web_app.ViewModels
 {
     public class ErrorViewModel
     {

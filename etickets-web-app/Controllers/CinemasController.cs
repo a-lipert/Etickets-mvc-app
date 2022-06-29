@@ -27,7 +27,7 @@ namespace etickets_web_app.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Logo,Name,Description")]CinemaViewModel cinema)
+        public async Task<IActionResult> Create([Bind("Logo,Name,Description")] CinemaViewModel cinema)
         {
             if (!ModelState.IsValid)
             {
@@ -49,8 +49,31 @@ namespace etickets_web_app.Controllers
             }
             return View(cinemaDetails);
         }
+        //GET: Cinemas/Edit/1
 
-            
+        public async Task<IActionResult> Edit(int id)
+        {
+            var cinemaDetails = await _service.GetByIdAsync(id);
+            if (cinemaDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(cinemaDetails);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Logo,Name,Description")] CinemaViewModel cinema)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cinema);
+            }
+            var dbModel = new Cinema { Id = cinema.Id, Name = cinema.Name, Logo = cinema.Logo, Description = cinema.Description };
+            await _service.UpdateAsync(id, dbModel);
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }
 

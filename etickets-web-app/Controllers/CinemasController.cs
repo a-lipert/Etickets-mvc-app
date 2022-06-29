@@ -53,12 +53,13 @@ namespace etickets_web_app.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var cinemaDetails = await _service.GetByIdAsync(id);
-            if (cinemaDetails == null)
+            var cinemaFromDb = await _service.GetByIdAsync(id);
+
+            if (cinemaFromDb == null)
             {
                 return View("NotFound");
             }
-            return View(cinemaDetails);
+            return View(cinemaFromDb);
         }
 
 
@@ -72,8 +73,35 @@ namespace etickets_web_app.Controllers
             var dbModel = new Cinema { Id = cinema.Id, Name = cinema.Name, Logo = cinema.Logo, Description = cinema.Description };
             await _service.UpdateAsync(id, dbModel);
             return RedirectToAction(nameof(Index));
+        }
+        //GET: Cinemas/Delete/1
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cinemaFromDb = await _service.GetByIdAsync(id);
+            if (cinemaFromDb == null)
+            {
+                return View("NotFound");
+            }
+            return View(cinemaFromDb);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+
+            var cinemaFromDb = await _service.GetByIdAsync(id);
+            if (cinemaFromDb == null)
+            {
+                return View("NotFound");
+            }
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
 
         }
+
+
     }
 }
 

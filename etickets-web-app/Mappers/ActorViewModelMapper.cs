@@ -3,7 +3,7 @@ using etickets_web_app.ViewModels;
 
 namespace etickets_web_app.Mappers
 {
-    public static class ActorViewModelMapper
+    public class ActorViewModelMapper
     {
         public static Actor ToActor(Actor actor, ActorViewModel viewModel)
         {
@@ -12,10 +12,9 @@ namespace etickets_web_app.Mappers
             actor.Bio = viewModel.Bio;
               
             return actor;
-
         }
 
-        public static ActorViewModel ToViewModel(Actor actor)
+        public ActorViewModel ToViewModel(Actor actor)
         {
             return new ActorViewModel
             {

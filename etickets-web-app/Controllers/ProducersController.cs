@@ -1,9 +1,7 @@
-﻿using etickets_web_app.Data;
-using etickets_web_app.Data.Services;
+﻿using etickets_web_app.Data.Services;
 using etickets_web_app.Models;
 using etickets_web_app.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace etickets_web_app.Controllers
 {
@@ -72,6 +70,7 @@ namespace etickets_web_app.Controllers
             await _service.UpdateAsync(id, producerFromDb);
             return RedirectToAction(nameof(Index));
         }
+        
 
         //GET: producers/delete/1
 

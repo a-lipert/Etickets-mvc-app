@@ -42,6 +42,7 @@ namespace etickets_web_app.Controllers
         //Get: Actors/Details/1
         public async Task<IActionResult> Details(int id)
         {
+
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("Not Found");
             return View(actorDetails);
@@ -50,7 +51,6 @@ namespace etickets_web_app.Controllers
         //Get: Actors/Edit/1
        public async Task<IActionResult> Edit(int id)
         {
-            
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null) return View("Not Found");
             return View(actorDetails);

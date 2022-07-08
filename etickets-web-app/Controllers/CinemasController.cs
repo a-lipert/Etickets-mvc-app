@@ -14,6 +14,7 @@ namespace etickets_web_app.Controllers
         {
             _service = service;
         }
+        public object CinemaViewModelMapper { get; set; }
         public async Task<IActionResult> Index()
         {
             var allCinemas = await _service.GetAllAsync();
@@ -43,23 +44,16 @@ namespace etickets_web_app.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var cinemaDetails = await _service.GetByIdAsync(id);
-            if (cinemaDetails == null)
-            {
-                return View("NotFound");
-            }
+            if (cinemaDetails == null) return View("NotFound");
             return View(cinemaDetails);
         }
         //GET: Cinemas/Edit/1
 
         public async Task<IActionResult> Edit(int id)
         {
-            var cinemaFromDb = await _service.GetByIdAsync(id);
-
-            if (cinemaFromDb == null)
-            {
-                return View("NotFound");
-            }
-            return View(cinemaFromDb);
+            var cinemaDetails = await _service.GetByIdAsync(id);
+            if (cinemaDetails == null) return View("NotFound");
+            return View(cinemaDetails);
         }
 
 

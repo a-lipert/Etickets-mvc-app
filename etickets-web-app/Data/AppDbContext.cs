@@ -16,7 +16,7 @@ namespace etickets_web_app.Data
                 am.MovieId,
             });
             //defining one to many with movie side:
-            modelBuilder.Entity<Actor_Movie>().HasOne(m=>m.Movie).WithMany(am=>am.Actors_Movies).HasForeignKey(m=>m.MovieId);
+            modelBuilder.Entity<Actor_Movie>().HasOne(m=>m.Movie).WithMany(am=>am.Actor_Movies).HasForeignKey(m=>m.MovieId);
             //defining one to many with actors side:
             modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Actor).WithMany(am => am.Actors_Movies).HasForeignKey(m => m.ActorId);
 

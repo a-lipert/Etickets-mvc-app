@@ -1,9 +1,10 @@
 ﻿using etickets_web_app.Data;
+using etickets_web_app.Data.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace etickets_web_app.Models
 {
-    public class Movie
+    public class Movie : IEntityBase
     {
         [Key]
         public int Id { get; set; }
@@ -17,9 +18,10 @@ namespace etickets_web_app.Models
         public int ProducerId { get; set; }
         public Producer Producer { get; set; }
         public ICollection<Actor> Actors { get; set; }
-        public ICollection<Actor_Movie> Actors_Movies { get; set;}
+        public ICollection<Actor_Movie> Actor_Movies { get; set;}
         public int CinemaId { get; set; }
         public Cinema Cinema { get; set; }
-        
+
+
     }
 }

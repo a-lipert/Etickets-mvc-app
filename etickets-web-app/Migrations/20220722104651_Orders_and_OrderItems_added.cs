@@ -4,7 +4,7 @@
 
 namespace etickets_web_app.Migrations
 {
-    public partial class order_and_orderitem_added : Migration
+    public partial class Orders_and_OrderItems_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,15 +26,16 @@ namespace etickets_web_app.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-                    Amount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Price = table.Column<double>(type: "float", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MovieId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.Amount);
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
                     table.ForeignKey(
                         name: "FK_OrderItems_Movies_MovieId",
                         column: x => x.MovieId,

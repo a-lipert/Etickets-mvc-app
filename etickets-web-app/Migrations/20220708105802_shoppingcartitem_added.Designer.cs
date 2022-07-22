@@ -141,53 +141,6 @@ namespace etickets_web_app.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("etickets_web_app.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("etickets_web_app.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Amount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Amount"), 1L, 1);
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Amount");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItems");
-                });
-
             modelBuilder.Entity("etickets_web_app.Models.Producer", b =>
                 {
                     b.Property<int>("Id")
@@ -283,24 +236,6 @@ namespace etickets_web_app.Migrations
                     b.Navigation("Producer");
                 });
 
-            modelBuilder.Entity("etickets_web_app.Models.OrderItem", b =>
-                {
-                    b.HasOne("etickets_web_app.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("etickets_web_app.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("Order");
-                });
 
             modelBuilder.Entity("etickets_web_app.Models.ShoppingCartItem", b =>
                 {
@@ -328,11 +263,6 @@ namespace etickets_web_app.Migrations
                     b.Navigation("Actor_Movies");
 
                     b.Navigation("Actors");
-                });
-
-            modelBuilder.Entity("etickets_web_app.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("etickets_web_app.Models.Producer", b =>

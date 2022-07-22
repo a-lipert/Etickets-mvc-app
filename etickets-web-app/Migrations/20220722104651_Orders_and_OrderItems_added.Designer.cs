@@ -12,8 +12,8 @@ using etickets_web_app.Data;
 namespace etickets_web_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220708104059_order_and_orderitem_added")]
-    partial class order_and_orderitem_added
+    [Migration("20220722104651_Orders_and_OrderItems_added")]
+    partial class Orders_and_OrderItems_added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,11 +164,14 @@ namespace etickets_web_app.Migrations
 
             modelBuilder.Entity("etickets_web_app.Models.OrderItem", b =>
                 {
-                    b.Property<int>("Amount")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Amount"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -176,10 +179,10 @@ namespace etickets_web_app.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Amount");
+                    b.HasKey("Id");
 
                     b.HasIndex("MovieId");
 
@@ -211,6 +214,31 @@ namespace etickets_web_app.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Producers");
+                });
+
+            modelBuilder.Entity("etickets_web_app.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("etickets_web_app.Models.Actor", b =>
@@ -275,6 +303,17 @@ namespace etickets_web_app.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("etickets_web_app.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("etickets_web_app.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("etickets_web_app.Models.Actor", b =>

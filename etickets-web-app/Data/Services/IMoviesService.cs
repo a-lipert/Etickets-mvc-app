@@ -10,7 +10,5 @@ namespace etickets_web_app.Data.Services
         Task<MovieDropdownViewModel> GetMovieDropdownValues();
         Task AddNewMovieAsync(MovieViewModel data);
         Task UpdateMovieAsync(MovieViewModel data);
-
-
     }
 }

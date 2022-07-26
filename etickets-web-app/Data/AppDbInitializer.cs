@@ -306,5 +306,12 @@ namespace etickets_web_app.Data
                 context.SaveChanges();
             }
         }
+
+        public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        {
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+            }
+        }
     }
 }

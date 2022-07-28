@@ -1,5 +1,6 @@
 ﻿using etickets_web_app.Data;
 using etickets_web_app.Models;
+using etickets_web_app.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,11 @@ namespace etickets_web_app.Controllers
             _signInManager = signInManager; 
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Login()
         {
-            return View();
+            var response = new LoginViewModel();
+
+            return View(response);
         }
     }
 }

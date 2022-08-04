@@ -67,11 +67,14 @@
                                     <a class="dropdown-item" asp-controller="Orders" asp-action="Index" >
                                     <i class="fa-solid fa-list-ul"></i> Orders </a>
                                     </li>
-                            </ul>
-                        
-
-                    </div>
-
+                             </ul>
+                        </div>
+                        <span style="padding:5px"></span>
+                        <form asp-controller="Account" asp-action="Logout">
+                        <button class="btn btn-outline-danger my-2 my-sm-0">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log out
+                        </button>
+                        </form>
                 </div>
             </div>
         </nav>

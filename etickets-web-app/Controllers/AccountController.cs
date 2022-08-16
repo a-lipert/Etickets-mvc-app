@@ -73,10 +73,11 @@ namespace etickets_web_app.Controllers
             {
                 FullName = registerViewModel.FullName,
                 Email = registerViewModel.EmailAddress,
-                UserName = registerViewModel.EmailAddress,
+                UserName = registerViewModel.FullName,
             };
 
             var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
+
             if (newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 

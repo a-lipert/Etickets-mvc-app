@@ -1,10 +1,12 @@
 ﻿using etickets_web_app.Data.Services;
 using etickets_web_app.Models;
 using etickets_web_app.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace etickets_web_app.Controllers
 {
+    [Authorize]
     public class ProducersController : Controller
     {
         private readonly IProducersService _service;
@@ -15,6 +17,7 @@ namespace etickets_web_app.Controllers
         }
         public object ProducerViewModelMapper { get; private set; }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allProducers = await _service.GetAllAsync();
@@ -22,7 +25,7 @@ namespace etickets_web_app.Controllers
         }
 
         //GET: producers/details/1
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var producerDetails = await _service.GetByIdAsync(id);

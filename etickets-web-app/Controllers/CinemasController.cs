@@ -1,12 +1,12 @@
-﻿using etickets_web_app.Data;
-using etickets_web_app.Data.Services;
+﻿using etickets_web_app.Data.Services;
 using etickets_web_app.Models;
 using etickets_web_app.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace etickets_web_app.Controllers
 {
+    [Authorize]
     public class CinemasController : Controller
     {
         private readonly ICinemasService _service;
@@ -15,6 +15,8 @@ namespace etickets_web_app.Controllers
             _service = service;
         }
         public object CinemaViewModelMapper { get; set; }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allCinemas = await _service.GetAllAsync();
@@ -40,7 +42,7 @@ namespace etickets_web_app.Controllers
         }
 
         //GET: Cinemas/Details/1
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var cinemaDetails = await _service.GetByIdAsync(id);

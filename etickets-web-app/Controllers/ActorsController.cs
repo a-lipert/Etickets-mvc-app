@@ -1,11 +1,12 @@
 ﻿using etickets_web_app.Data.Services;
-using etickets_web_app.Mappers;
 using etickets_web_app.Models;
 using etickets_web_app.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace etickets_web_app.Controllers
 {
+    [Authorize]
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
@@ -16,6 +17,8 @@ namespace etickets_web_app.Controllers
         {
             _service = service;
         }
+
+    [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allActors = await _service.GetAllAsync();

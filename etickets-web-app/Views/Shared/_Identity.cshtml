@@ -1,5 +1,4 @@
-﻿
-@inject UserManager<ApplicationUser> UserManager;
+﻿@inject UserManager<ApplicationUser> UserManager;
 
 @if (!User.Identity.IsAuthenticated)
 {
@@ -24,6 +23,17 @@ else
                     <i class="fa-solid fa-list-ul"></i> Orders
                 </a>
             </li>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="fa-solid fa-users"></i> Users
+                    </a>
+                </li>
+            }
+
+
         </ul>
     </div>
     <span style="padding:5px"></span>

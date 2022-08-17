@@ -99,6 +99,10 @@ namespace etickets_web_app.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        public IActionResult AccessDenied (string ReturnUrl)
+        {
+            return View();
+        }
     }
 
 }

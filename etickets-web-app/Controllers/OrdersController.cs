@@ -1,13 +1,16 @@
 ﻿using etickets_web_app.Data.Cart;
 using etickets_web_app.Data.Services;
 using etickets_web_app.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace etickets_web_app.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
+        
         private readonly IMoviesService _moviesService;
         private readonly ShoppingCart _shoppingCart;
         private readonly IOrdersService _ordersService;

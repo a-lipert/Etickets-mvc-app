@@ -2,9 +2,11 @@
 using etickets_web_app.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using etickets_web_app.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace etickets_web_app.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly IMoviesService _service;
@@ -16,11 +18,14 @@ namespace etickets_web_app.Controllers
 
         public object MovieViewModelMapper { get; set; }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allMovies = await _service.GetAllAsync(n => n.Cinema);
             return View(allMovies);
         }
+
+        [AllowAnonymous]
 
         public async Task<IActionResult> Filter(string searchString)
         {
@@ -36,6 +41,8 @@ namespace etickets_web_app.Controllers
         }
 
         //GET: Movies/Details/1
+        [AllowAnonymous]
+
         public async Task<IActionResult> Details(int id)
         {
             var movieDetail = await _service.GetMovieByIdAsync(id);

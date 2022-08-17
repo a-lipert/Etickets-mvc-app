@@ -3,10 +3,11 @@ using etickets_web_app.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using etickets_web_app.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using etickets_web_app.Data.Static;
 
 namespace etickets_web_app.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
         private readonly IMoviesService _service;
